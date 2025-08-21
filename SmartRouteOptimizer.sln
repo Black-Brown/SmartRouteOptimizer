@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRouteOptimizer", "src\SmartRouteOptimizer\SmartRouteOptimizer.csproj", "{61F60ABF-4F11-4A55-83AF-D82DE1795ED4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRouteOptimizer.Api", "src\SmartRouteOptimizer.Api\SmartRouteOptimizer.Api.csproj", "{448AAA0B-3799-4FA5-BAF8-C338ED2D6CE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{61F60ABF-4F11-4A55-83AF-D82DE1795ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61F60ABF-4F11-4A55-83AF-D82DE1795ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61F60ABF-4F11-4A55-83AF-D82DE1795ED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{448AAA0B-3799-4FA5-BAF8-C338ED2D6CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{448AAA0B-3799-4FA5-BAF8-C338ED2D6CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{448AAA0B-3799-4FA5-BAF8-C338ED2D6CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{448AAA0B-3799-4FA5-BAF8-C338ED2D6CE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
