@@ -1,4 +1,4 @@
-﻿namespace LastMileOptimizer.Api.Models;
+﻿namespace SmartRouteOptimizer.Api.Models;
 public class SolutionDto
 {
     public Guid SessionId { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace LastMileOptimizer.Api.Models;
+﻿namespace SmartRouteOptimizer.Api.Models;
 public class RouteDto
 {
     public int VehicleId { get; set; }
