@@ -29,86 +29,6 @@ Ejecuta múltiples heurísticas (Greedy / Genético, etc.) **en paralelo**, comp
 
 ---
 
-## Diagrama (Mermaid)
-
-```mermaid
-graph TB
-    subgraph "Frontend Layer"
-        UI[HTML5 Interface]
-        Map[Leaflet Map Component]
-        Progress[Progress Monitor]
-        Results[Results Display]
-    end
-
-    subgraph "API Layer"
-        Controller[OptimizerController]
-        StartAPI[POST /start]
-        StatusAPI[GET /status/{id}]
-        ResultAPI[GET /result/{id}]
-    end
-
-    subgraph "Service Layer"
-        Engine[OptimizationEngine]
-        SessionMgr[Session Manager]
-        Sessions[(ConcurrentDictionary Sessions)]
-    end
-
-    subgraph "Parallel Execution Layer"
-        Orchestrator[Task Orchestrator]
-        
-        subgraph "Algorithm Tasks"
-            T1[Greedy-1 Task]
-            T2[Greedy-2 Task]  
-            T3[Genetic-1 Task]
-            T4[Genetic-2 Task]
-        end
-        
-        ProgressTask[Progress Update Task]
-        SharedState[OptimizationSession<br/>Shared State]
-    end
-
-    subgraph "Synchronization Layer"
-        Locks[Thread Locks]
-        CancelTokens[Cancellation Tokens]
-        TaskCoordination[Task.WhenAll()]
-    end
-
-    UI --> StartAPI
-    Progress --> StatusAPI
-    Results --> ResultAPI
-
-    StartAPI --> Engine
-    StatusAPI --> SessionMgr
-    ResultAPI --> SessionMgr
-
-    Engine --> Orchestrator
-    Engine --> Sessions
-    SessionMgr --> Sessions
-
-    Orchestrator --> T1
-    Orchestrator --> T2
-    Orchestrator --> T3
-    Orchestrator --> T4
-    Orchestrator --> ProgressTask
-
-    T1 --> SharedState
-    T2 --> SharedState
-    T3 --> SharedState
-    T4 --> SharedState
-    ProgressTask --> SharedState
-
-    SharedState --> Locks
-    T1 --> CancelTokens
-    T2 --> CancelTokens
-    T3 --> CancelTokens
-    T4 --> CancelTokens
-    ProgressTask --> CancelTokens
-
-    Orchestrator --> TaskCoordination
-```
-
----
-
 ## Estructura del proyecto
 
 > Sugerencia de layout (ajústalo a tu repo actual):
@@ -335,26 +255,6 @@ setTimeout(async () => {
 }, 20000);
 ```
 
----
-
-## Roadmap
-
-* [ ] Sustituir simulaciones por heurísticas VRP/TSP reales (con ventanas de tiempo).
-* [ ] División por **zonas geográficas** y balanceo de carga por vehículo.
-* [ ] Cache/persistencia en **Redis** para sesiones distribuidas.
-* [ ] Métricas avanzadas: penalizaciones por tardanza, SLAs, huella de carbono.
-* [ ] UI completa con gráficos de rendimiento y comparación de heurísticas.
-
----
-
-## Contribuir
-
-1. Haz un fork y crea una rama: `feat/nueva-heuristica`
-2. Asegúrate de mantener interfaces: `AlgorithmResultDto`, actualización de `Algorithms` y métricas.
-3. Abre un PR con una breve explicación de la estrategia y benchmarks.
-
----
-
 ## Licencia
 
 MIT (puedes cambiarla si tu proyecto lo requiere).
@@ -366,6 +266,3 @@ MIT (puedes cambiarla si tu proyecto lo requiere).
 Proyecto académico/técnico de **optimización de última milla** con paralelización en .NET.
 Nombre del proyecto: **SmartRouteOptimizer**.
 
----
-
-¿Quieres que lo deje ya en un archivo `README.md` y además te genere un `api.http` con ejemplos de llamadas (`POST /start`, `GET /status`, `GET /result`) para probar desde VS Code/REST Client?
