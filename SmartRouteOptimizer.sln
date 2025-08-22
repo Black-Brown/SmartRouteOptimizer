@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRouteOptimizer", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRouteOptimizer.Api", "src\SmartRouteOptimizer.Api\SmartRouteOptimizer.Api.csproj", "{448AAA0B-3799-4FA5-BAF8-C338ED2D6CE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRouteOptimizer.Tests", "SmartRouteOptimizer.Tests\SmartRouteOptimizer.Tests.csproj", "{2DB34248-9730-4801-A268-6741A9F85EDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRouteOptimizer.Web", "src\SmartRouteOptimizer.Web\SmartRouteOptimizer.Web.csproj", "{8664F135-16B8-4961-8350-E2140E006EC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{448AAA0B-3799-4FA5-BAF8-C338ED2D6CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{448AAA0B-3799-4FA5-BAF8-C338ED2D6CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{448AAA0B-3799-4FA5-BAF8-C338ED2D6CE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DB34248-9730-4801-A268-6741A9F85EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB34248-9730-4801-A268-6741A9F85EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB34248-9730-4801-A268-6741A9F85EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB34248-9730-4801-A268-6741A9F85EDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8664F135-16B8-4961-8350-E2140E006EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8664F135-16B8-4961-8350-E2140E006EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8664F135-16B8-4961-8350-E2140E006EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8664F135-16B8-4961-8350-E2140E006EC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
