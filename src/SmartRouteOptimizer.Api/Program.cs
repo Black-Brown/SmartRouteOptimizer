@@ -1,15 +1,34 @@
+using LastMileOptimizer.Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Add services
+builder.Services.AddControllers()
+    .AddJsonOptions(opt =>
+    {
+        opt.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// CORS abierto para pruebas locales con tu HTML
+const string CorsPolicy = "AllowAll";
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy(CorsPolicy, p => p
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod());
+});
+
+// Servicios en memoria
+builder.Services.AddSingleton<OptimizationEngine>();
+builder.Services.AddSingleton<OptimizationSessionManager>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseCors(CorsPolicy);
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,9 +36,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
