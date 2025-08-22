@@ -14,6 +14,9 @@ public class OptimizationEngine
 
     public Guid StartOptimization(OptimizationRequest request)
     {
+        if (request == null)
+            throw new ArgumentNullException(nameof(request));
+
         var session = new OptimizationSession(request);
         _sessions[session.Id] = session;
 
