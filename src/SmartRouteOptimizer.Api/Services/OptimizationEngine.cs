@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using SmartRouteOptimizer.Api.Models;
-using SmartRouteOptimizer.Api.Models;
 using SmartRouteOptimizer.Api.Services;
 
 namespace SmartRouteOptimizer.Api.Services;
@@ -51,11 +50,11 @@ public class OptimizationEngine
         s.Message = "Ejecutando algoritmos paralelos...";
         var rng = new Random();
 
-        // ✅ INICIALIZAR PROGRESO INMEDIATAMENTE
+        // INICIALIZAR PROGRESO INMEDIATAMENTE
         s.Evaluaciones = 1;
         s.ProgressPercent = 0.1;
 
-        // ✅ PROGRESO EN PARALELO - CORREGIDO
+
         var progressTask = Task.Run(async () =>
         {
             try
@@ -66,7 +65,7 @@ public class OptimizationEngine
                     s.ProgressPercent = Math.Min(95.0, s.ProgressPercent + rng.NextDouble() * 2.0);
                     s.Message = $"Explorando {Math.Floor(s.ProgressPercent)}% del espacio de soluciones...";
 
-                    // ✅ DELAY MÁS CORTO PARA MEJOR RESPONSIVIDAD
+                   
                     await Task.Delay(100, token);
                 }
             }
@@ -76,7 +75,7 @@ public class OptimizationEngine
             }
         }, token);
 
-        // ✅ CREAR TASKS EN PARALELO PERO SIN MARCAR COMO RUNNING AQUÍ
+        
         var tasks = new List<Task<AlgorithmResultDto>>
         {
             Task.Run(() => RunGreedy("Greedy-1", 2.0, s, rng, token), token),
@@ -88,7 +87,7 @@ public class OptimizationEngine
         AlgorithmResultDto[] results;
         try
         {
-            // ✅ ESPERAR QUE TODOS TERMINEN
+           
             results = await Task.WhenAll(tasks);
         }
         catch (OperationCanceledException)
@@ -122,13 +121,13 @@ public class OptimizationEngine
             Routes = routes
         };
 
-        // ✅ FINALIZAR CORRECTAMENTE
+        // FINALIZAR CORRECTAMENTE
         s.ProgressPercent = 100;
         s.Message = "Optimización finalizada";
         s.Evaluaciones += rng.Next(100, 300); // Bump final
     }
 
-    // ===== ALGORITMOS CORREGIDOS =====
+    
     private AlgorithmResultDto RunGreedy(string name, double seconds,
         OptimizationSession s, Random rng, CancellationToken token)
     {
@@ -146,7 +145,7 @@ public class OptimizationEngine
             TimeSeconds = seconds
         };
 
-        // ✅ ACTUALIZAR AL COMPLETAR
+        // ACTUALIZAR AL COMPLETAR
         UpdateAlg(s, name, state: "Completed", cost: result.Cost);
 
         return result;
@@ -155,10 +154,10 @@ public class OptimizationEngine
     private AlgorithmResultDto RunGenetic(string name, double seconds,
         OptimizationSession s, Random rng, CancellationToken token)
     {
-        // ✅ MARCAR COMO RUNNING AL INICIAR  
+        // MARCAR COMO RUNNING AL INICIAR  
         UpdateAlg(s, name, state: "Running");
 
-        // ✅ TRABAJO SIMULADO
+        // TRABAJO SIMULADO
         SimulateWork(seconds, token, s, name);
 
         var result = new AlgorithmResultDto
@@ -169,13 +168,13 @@ public class OptimizationEngine
             TimeSeconds = seconds
         };
 
-        // ✅ ACTUALIZAR AL COMPLETAR
+        // ACTUALIZAR AL COMPLETAR
         UpdateAlg(s, name, state: "Completed", cost: result.Cost);
 
         return result;
     }
 
-    // ✅ SIMULACIÓN MEJORADA CON MEJOR RESPONSIVIDAD
+    // SIMULACIÓN MEJORADA CON MEJOR RESPONSIVIDAD
     private void SimulateWork(double seconds, CancellationToken token, OptimizationSession s, string algorithmName)
     {
         var stopAt = DateTime.UtcNow.AddSeconds(seconds);
@@ -196,7 +195,7 @@ public class OptimizationEngine
         }
     }
 
-    // ✅ CORRECCIÓN DEL UpdateAlg - THREAD-SAFE
+ 
     private void UpdateAlg(OptimizationSession s, string name, string state, double? cost = null)
     {
         lock (s.Algorithms) // Thread-safe para acceso concurrente
