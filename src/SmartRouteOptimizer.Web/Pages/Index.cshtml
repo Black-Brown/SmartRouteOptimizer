@@ -1,0 +1,66 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container py-4">
+    <div class="card shadow p-3">
+        <div class="row">
+            <!-- Panel izquierdo -->
+            <div class="col-md-4">
+                <h5>⚙️ Configuración</h5>
+                <div class="mb-3">
+                    <label>Número de Clientes</label>
+                    <input type="range" min="5" max="100" step="1" value="25" id="clientes" class="form-range" />
+                    <span id="clientesVal">25</span>
+                </div>
+
+                <div class="mb-3">
+                    <label>Número de Vehículos</label>
+                    <input type="range" min="1" max="20" step="1" value="4" id="vehiculos" class="form-range" />
+                    <span id="vehiculosVal">4</span>
+                </div>
+
+                <div class="mb-3">
+                    <label>Tiempo Límite (segundos)</label>
+                    <input type="range" min="5" max="120" step="5" value="30" id="tiempo" class="form-range" />
+                    <span id="tiempoVal">30</span>
+                </div>
+
+                <button class="btn btn-gradient w-100 mb-2" onclick="iniciarOptimizacion()">🚀 Optimizar Rutas</button>                
+            </div>
+
+            <!-- Panel derecho -->
+            <div class="col-md-8">
+                <div id="map" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Métricas -->
+    <div class="card shadow mt-4 p-3">
+        <h5>📊 Métricas en Tiempo Real</h5>
+        <div class="progress-container">
+            <p><strong><span id="evaluaciones">0</span></strong> Evaluaciones realizadas</p>
+            <p><strong><span id="tiempoTranscurrido">0</span></strong>s Tiempo transcurrido</p>
+            <div class="mb-2">
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                </div>
+                <small id="progressText">Esperando...</small>
+            </div>
+        </div>
+
+        <h5>⚡ Estado de Algoritmos</h5>
+        <div id="algoritmosEstado">
+            <div class="algorithm-item algorithm-waiting">Esperando inicio...</div>
+        </div>
+    </div>
+
+    <!-- Resultados -->
+    <div class="card shadow mt-4 p-3" id="resultadosCard" style="display: none;">
+        <h5>🏆 Resultados Finales</h5>
+        <div id="resultados"></div>
+    </div>
+</div>
