@@ -1,0 +1,32 @@
+﻿.btn-gradient {
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    color: white;
+    font-weight: bold;
+}
+
+.progress-container {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.algorithm-item {
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+}
+
+.algorithm-running {
+    background: #fff3cd !important;
+}
+
+.algorithm-completed {
+    background: #d1edff !important;
+}
+
+.algorithm-waiting {
+    background: #f8f9fa !important;
+}
