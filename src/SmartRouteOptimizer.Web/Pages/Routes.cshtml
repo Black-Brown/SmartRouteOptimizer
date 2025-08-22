@@ -1,0 +1,28 @@
+﻿@page
+@model SmartRouteOptimizer.Web.Pages.RoutesModel
+@{
+    <h2>Rutas</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Distancia</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var route in Model.Routes)
+            {
+                <tr>
+                    <td>@route.Id</td>
+                    <td>@route.Start</td>
+                    <td>@route.End</td>
+                    <td>@route.Distance km</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
